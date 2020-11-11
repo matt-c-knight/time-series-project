@@ -29,12 +29,8 @@ def new_cohort_data():
 
 def get_cohort_data(cached=False):
     if cached or os.path.isfile('cohort_name.csv') == False:
-        cohort = new_cohort_data()
+        df = new_cohort_data()
     else:
-        cohort = pd.read_csv('cohort_name.csv',
-                engine='python',
-                 header=None,
-                 index_col=False,
-                 sep=r'\s(?=(?:[^"]*"[^"]*")*[^"]*$)(?![^\[]*\])',
-                 na_values='"-"',)
-    return cohort
+        df = pd.read_csv('cohort_name.csv')
+                
+    return df
